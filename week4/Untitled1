@@ -1,0 +1,33 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+   ifstream inFS;
+   int fileNumber = 0; // Number in file
+   
+   inFS.open("myfile.txt");
+   
+   if (!inFS.is_open()) {
+      cout << "Could not open file myfile.txt." << endl;
+      
+      return 1;
+   }
+   
+   // Read file until end-of-file or an error
+   while (inFS.good()) {
+       inFS >> fileNumber;
+       cout << "File number: " << fileNumber << endl;
+   }
+   
+   // If end-of-file not reached, then an error occurred
+   if (!inFS.eof()) {
+      cout << "Error reading myfile.txt" << endl;
+      
+      return 1;
+   }
+   
+   inFS.close();
+   
+   return 0;
+}
